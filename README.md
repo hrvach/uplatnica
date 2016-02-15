@@ -44,8 +44,38 @@ Fields:
 
 Make sure not to exceed the lengths to generate a valid 2D barcode.
 
+Data example and usage
+-----
+
+```python
+
+testni_podaci = '{"poziv_na_broj_platitelja": "54321-121-1",\
+                 "poziv_na_broj_primatelja": "12345-212-2",\
+                 "iznos": "12345",\
+                 "iban_primatelja": "HR9223600001501426697",\
+                 "iban_platitelja": "HR6025000091000000013",\
+                 "model_primatelja": "HR01",\
+                 "model_platitelja": "HR05",\
+                 "sifra_namjene": "OTLC",\
+                 "datum_izvrsenja": "10022016",\
+                 "valuta_placanja": "HRK",\
+                 "hitno": "X",\
+                 "ime_i_prezime_platitelja": "Pero Perić",\
+                 "ulica_i_broj_platitelja": "Ilica 1",\
+                 "postanski_i_grad_platitelja": "10000 Zagreb",\
+                 "naziv_primatelja": "Sklonište za nezbrinute životinje",\
+                 "ulica_i_broj_primatelja": "Franjčevićeva 43",\
+                 "postanski_i_grad_primatelja": "10361 Dumovec",\
+                 "opis_placanja": "Novčani prilog za pomoć nezbrinutim životinjama."}'
+
+
+kreiraj_uplatnicu(testni_podaci, 'uplatnica_demo.pdf')
+
+```
+
 License
 -----
 
 All code is released under GPL v2.0.
+
 PDF 417 part uses Terry Burton's excellent barcode writer written in Postscript.
