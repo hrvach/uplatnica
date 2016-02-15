@@ -43,3 +43,9 @@ Fields:
 * opis_placanja (<= 35)
 
 Make sure not to exceed the lengths to generate a valid 2D barcode.
+
+License
+-----
+
+All code is released under GPL v2.0.
+PDF 417 part uses Terry Burton's excellent barcode writer written in Postscript.
