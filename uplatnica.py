@@ -7,7 +7,7 @@ import subprocess
 
 def kreiraj_uplatnicu(podaci):
     """
-    Prima podatke u JSON formatu i putanju odredišne PDF datoteke
+    Prima podatke u JSON formatu i vraća sadržaj PDF datoteke
     """
     podaci = json.loads(podaci)
 
