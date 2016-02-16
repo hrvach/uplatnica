@@ -18,10 +18,11 @@ Dependencies
 Usage
 -----
 
-Call 'kreiraj_uplatnicu' with two arguments - json string with the required
-fields and the PDF output filename.
+```python
+kreiraj_uplatnicu(json_fields)
+```
 
-kreiraj_uplatnicu(json_fields, output_filename)
+json_fields should be a string containing the following JSON key-value pairs:
 
 Fields:
 * poziv_na_broj_platitelja (<= 22 chars)
@@ -42,7 +43,7 @@ Fields:
 * postanski_i_grad_primatelja (<= 27)
 * opis_placanja (<= 35)
 
-Make sure not to exceed the lengths to generate a valid 2D barcode.
+Make sure not to exceed the lengths in order to generate a valid 2D barcode.
 
 Data example and usage
 -----
@@ -69,13 +70,21 @@ testni_podaci = '{"poziv_na_broj_platitelja": "54321-121-1",\
                  "opis_placanja": "Novčani prilog za pomoć nezbrinutim životinjama."}'
 
 
-kreiraj_uplatnicu(testni_podaci, 'uplatnica_demo.pdf')
+uplatnica = kreiraj_uplatnicu(testni_podaci)
 
 ```
+
+'uplatnica' now contains the PDF document and you can either save it to disk or
+provide it through a web server.
 
 License
 -----
 
-All code is released under GPL v2.0.
+This mini-project is released under the LGPL v3 license. Feel free to use it in your product!
 
-PDF 417 part uses Terry Burton's excellent barcode writer written in Postscript.
+Credits
+-----
+
+* PDF 417 part uses parts of Terry Burton's excellent barcode writer in Postscript.
+* Fonts are derived from t1-cyrillic Debian package.
+* The payment slip form was adapted from the specification issued by Croatian Banking Association.

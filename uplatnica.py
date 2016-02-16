@@ -5,7 +5,7 @@ import textwrap
 import subprocess
 
 
-def kreiraj_uplatnicu(podaci, pdf_datoteka):
+def kreiraj_uplatnicu(podaci):
     """
     Prima podatke u JSON formatu i putanju odredišne PDF datoteke
     """
@@ -31,12 +31,13 @@ def kreiraj_uplatnicu(podaci, pdf_datoteka):
     podaci['opis'] = map(sredi_znakove, textwrap.wrap(podaci['opis_placanja'], 28))
     podaci['textwrap'] = textwrap
 
-    gs = subprocess.Popen(['gs', '-o', pdf_datoteka, '-sDEVICE=pdfwrite',
+    gs = subprocess.Popen(['gs', '-sOutputFile=-', '-sDEVICE=pdfwrite',
                            '-dPDFSETTINGS=/prepress', '-dHaveTrueTypes=true',
                            '-dEmbedAllFonts=true', '-dSubsetFonts=true', '-'],
                            stdout=subprocess.PIPE, stdin=subprocess.PIPE)
 
-    gs.communicate(template.render(podaci).encode('utf-8'))
+    izlaz, greska = gs.communicate(template.render(podaci).encode('utf-8'))
+    return izlaz
 
 ########################## TEST ##############################
 #
@@ -59,4 +60,6 @@ testni_podaci = '{"poziv_na_broj_platitelja": "54321-121-1",\
                  "postanski_i_grad_primatelja": "10361 Dumovec",\
                  "opis_placanja": "Novčani prilog za pomoć nezbrinutim životinjama."}'
 
-kreiraj_uplatnicu(testni_podaci, 'uplatnica_demo.pdf')
+uplatnica = kreiraj_uplatnicu(testni_podaci)
+
+open('demo_uplatnica.pdf', 'w').write(uplatnica)
