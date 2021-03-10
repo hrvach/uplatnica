@@ -18,7 +18,7 @@ def kreiraj_uplatnicu(podaci):
                    u'ć': u'cacute', u'Ć': u'Cacute',
                    u'č': u'ccaron', u'Č': u'Ccaron'}
 
-        for k, v in rjecnik.iteritems():
+        for k, v in rjecnik.items():
             value = value.replace(k, u') show /%s glyphshow (' % v)
 
         return value
@@ -64,4 +64,4 @@ testni_podaci = """
 
 uplatnica = kreiraj_uplatnicu(testni_podaci)
 
-open('demo_uplatnica.pdf', 'w').write(uplatnica)
+open('demo_uplatnica.pdf', 'wb').write(uplatnica)
